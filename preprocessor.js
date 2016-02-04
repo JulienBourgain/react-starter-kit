@@ -12,7 +12,7 @@
 var babel = require('babel-core');
 
 module.exports = {
-  process: function(src, filename) {
+  process: function process(src, filename) {
     // Ignore files other than .js, .es, .jsx or .es6
     if (!babel.canCompile(filename)) {
       return '';
@@ -22,5 +22,5 @@ module.exports = {
       return babel.transform(src, {filename: filename}).code;
     }
     return src;
-  }
+  },
 };

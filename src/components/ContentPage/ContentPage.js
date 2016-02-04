@@ -1,16 +1,12 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
+/*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 
-import React, { Component, PropTypes } from 'react';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import s from './ContentPage.scss';
+import React, { PropTypes, Component } from 'react';
+import styles from './ContentPage.css';
+import withStyles from '../../decorators/withStyles';
+import Paper from 'material-ui/lib/paper';
+import LivePage from '../LivePage';
 
+@withStyles(styles)
 class ContentPage extends Component {
 
   static propTypes = {
@@ -25,16 +21,19 @@ class ContentPage extends Component {
 
   render() {
     this.context.onSetTitle(this.props.title);
+
+    const contentStyle = {};
+
     return (
-      <div className={s.root}>
-        <div className={s.container}>
-          {this.props.path === '/' ? null : <h1>{this.props.title}</h1>}
-          <div dangerouslySetInnerHTML={{ __html: this.props.content || '' }} />
-        </div>
-      </div>
+      <Paper style={contentStyle} rounded={false}>
+        <div className="ContentPage-container">
+          {
+            this.props.path === '/' ? null : <h1>{this.props.title}</h1>
+          }
+          <div dangerouslySetInnerHTML={{__html: this.props.content || ''}} /></div>
+      </Paper>
     );
   }
-
 }
 
-export default withStyles(ContentPage, s);
+export default ContentPage;
